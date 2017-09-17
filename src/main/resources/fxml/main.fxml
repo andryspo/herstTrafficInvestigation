@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="179.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.okhrymovych_kalandyak.controllers.MainController">
-   <children>
-      <Button layoutX="20.0" layoutY="65.0" mnemonicParsing="false" onAction="#calc" prefHeight="44.0" prefWidth="321.0" text="Calc Herst" />
-      <Label layoutX="20.0" layoutY="24.0" text="File: " />
-      <TextField fx:id="fileTF" layoutX="57.0" layoutY="20.0" prefHeight="25.0" prefWidth="283.0" text="D:\traffic2\12 05\bytes.csv" />
-      <TextField fx:id="resultTF" layoutX="57.0" layoutY="130.0" prefHeight="25.0" prefWidth="283.0" />
-      <Label layoutX="6.0" layoutY="134.0" text="result:" />
-   </children>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="179.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.okhrymovych_kalandyak.controllers.MainController">
+    <children>
+        <Button layoutX="20.0" layoutY="65.0" mnemonicParsing="false" onAction="#calc" prefHeight="44.0"
+                prefWidth="321.0" text="Calc Herst"/>
+        <Label layoutX="20.0" layoutY="24.0" text="File: "/>
+        <TextField fx:id="fileTF" layoutX="57.0" layoutY="20.0" prefHeight="25.0" prefWidth="283.0"
+                   text="D:\traffic2\12 05\bytes.csv"/>
+        <TextField fx:id="resultTF" layoutX="57.0" layoutY="130.0" prefHeight="25.0" prefWidth="283.0"/>
+        <Label layoutX="6.0" layoutY="134.0" text="result:"/>
+    </children>
 </AnchorPane>

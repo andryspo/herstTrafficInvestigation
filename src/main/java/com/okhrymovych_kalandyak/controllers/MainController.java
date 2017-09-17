@@ -1,8 +1,8 @@
 package com.okhrymovych_kalandyak.controllers;
 
 import com.okhrymovych_kalandyak.model.TrafficPoint;
-import com.okhrymovych_kalandyak.services.CSVParser;
-import com.okhrymovych_kalandyak.services.HerstCalculator;
+import com.okhrymovych_kalandyak.services.interfaces.ICSVParser;
+import com.okhrymovych_kalandyak.services.interfaces.IHerstCalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -21,10 +21,10 @@ public class MainController {
     private TextField resultTF;
 
     @Autowired
-    private CSVParser csvParser;
+    private ICSVParser csvParser;
 
     @Autowired
-    private HerstCalculator herstCalculator;
+    private IHerstCalculator herstCalculator;
 
     public void calc(ActionEvent actionEvent) {
 

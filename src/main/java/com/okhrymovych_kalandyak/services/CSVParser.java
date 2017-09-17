@@ -1,9 +1,9 @@
 package com.okhrymovych_kalandyak.services;
 
 import com.okhrymovych_kalandyak.model.TrafficPoint;
+import com.okhrymovych_kalandyak.services.interfaces.ICSVParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CSVParser {
+public class CSVParser implements ICSVParser {
 
     private Logger logger = LoggerFactory.getLogger(CSVParser.class);
 
@@ -30,7 +30,7 @@ public class CSVParser {
             logger.info("read data from file " + filePath);
 
             //read first line it is header
-            if(br.readLine() != null) {
+            if (br.readLine() != null) {
                 while ((line = br.readLine()) != null) {
                     String[] res = line.split(cvsSplitBy);
                     trafficPoints.add(new TrafficPoint(Double.parseDouble(res[1]), Double.parseDouble(res[0])));
