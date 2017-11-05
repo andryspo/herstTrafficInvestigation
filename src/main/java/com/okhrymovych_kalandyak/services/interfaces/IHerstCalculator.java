@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IHerstCalculator {
 
-    double calc(List<TrafficPoint> trafficPoints);
+    double calc(List<TrafficPoint> trafficPoints, double a);
 
 }

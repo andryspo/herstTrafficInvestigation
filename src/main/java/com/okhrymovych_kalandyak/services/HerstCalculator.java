@@ -14,12 +14,10 @@ import java.util.stream.Collectors;
 @Service
 public class HerstCalculator implements IHerstCalculator {
 
-    private final double A = 1;
-
     private Logger logger = LoggerFactory.getLogger(HerstCalculator.class);
 
     //formula : H = log(R/S)/log(a*N)
-    public double calc(List<TrafficPoint> trafficPoints) {
+    public double calc(List<TrafficPoint> trafficPoints, double a) {
 
         logger.info("try to calc herst parameter");
 
@@ -34,7 +32,7 @@ public class HerstCalculator implements IHerstCalculator {
         logger.info("calc R");
         double R = calcR(xs, average);
 
-        return Math.log(R / S) / Math.log(A * xs.size());
+        return Math.log(R / S) / Math.log(a * xs.size());
     }
 
     private double calcS(List<Double> trafficPoints, double average) throws NoSuchElementException {
