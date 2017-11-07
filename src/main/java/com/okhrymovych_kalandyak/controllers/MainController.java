@@ -1,11 +1,17 @@
 package com.okhrymovych_kalandyak.controllers;
 
+import com.okhrymovych_kalandyak.enums.Functions;
 import com.okhrymovych_kalandyak.model.TrafficPoint;
+import com.okhrymovych_kalandyak.services.Modulator;
 import com.okhrymovych_kalandyak.services.interfaces.ICSVParser;
 import com.okhrymovych_kalandyak.services.interfaces.IHerstCalculator;
 import com.okhrymovych_kalandyak.validator.AParameterValidator;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +32,37 @@ public class MainController {
     @FXML
     private TextField aParamTF;
 
+    @FXML
+    private ComboBox<Functions> functionCB;
+
+    @FXML
+    private LineChart<Double, Double> chartLC;
+
+    @FXML
+    private LineChart<Double, Double> trafficChartLC;
+
+    @FXML
+    private TextField nTF;
+
+    @FXML
+    private TextField minTF;
+
+    @FXML
+    private TextField maxTF;
+
+    @FXML
+    private TextField dispersionTF;
+
+    @FXML
+    private TextField aModulateParamTF;
+
+    @FXML
+    private TextField modulatedHerstParamTF;
+
     @Autowired
     private ICSVParser csvParser;
 
-    private Logger logger = LoggerFactory.getLogger("MainController");
+    private Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private IHerstCalculator herstCalculator;
@@ -37,19 +70,58 @@ public class MainController {
     @Autowired
     private AParameterValidator aParameterValidator;
 
+    @Autowired
+    private Modulator modulator;
+
+    @FXML
+    public void initialize() {
+        functionCB.setItems(FXCollections.observableArrayList(
+                Functions.SIN,
+                Functions.COS
+        ));
+
+        functionCB.setValue(Functions.SIN);
+    }
+
     public void calc(ActionEvent actionEvent) {
 
         List<TrafficPoint> trafficPoints = csvParser.parse(fileTF.getText());
 
-        if(!aParameterValidator.validate(aParamTF.getText())) {
+        if (!aParameterValidator.validate(aParamTF.getText())) {
             return;
         }
 
         double a = Double.parseDouble(aParamTF.getText());
 
+        addTrafficPointsToChart(trafficChartLC, trafficPoints);
+
         if (trafficPoints != null && !trafficPoints.isEmpty()) {
             resultTF.setText(String.valueOf(herstCalculator.calc(trafficPoints, a)));
         }
+    }
+
+    public void modulate(ActionEvent actionEvent) {
+
+        int n = Integer.parseInt(nTF.getText());
+        double min = Double.parseDouble(minTF.getText());
+        double max = Double.parseDouble(maxTF.getText());
+        Functions functions = functionCB.getValue();
+        double dispersion = Double.parseDouble(dispersionTF.getText());
+        double aParam = Double.parseDouble(aModulateParamTF.getText());
+
+        List<TrafficPoint> modulated = modulator.modulate(min, max, n, functions, dispersion);
+        addTrafficPointsToChart(chartLC, modulated);
+        modulatedHerstParamTF.setText(String.valueOf(herstCalculator.calc(modulated, aParam)));
+    }
+
+    private void addTrafficPointsToChart(LineChart<Double, Double> lineChart, List<TrafficPoint> points) {
+        XYChart.Series<Double, Double> series = new XYChart.Series<>();
+
+        points.forEach(
+                e -> series.getData().add(new XYChart.Data<>(e.getTime(), e.getSpeed()))
+        );
+
+        lineChart.getData().add(series);
     }
 }
 
