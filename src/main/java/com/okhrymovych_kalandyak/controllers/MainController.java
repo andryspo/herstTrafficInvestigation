@@ -77,7 +77,10 @@ public class MainController {
     public void initialize() {
         functionCB.setItems(FXCollections.observableArrayList(
                 Functions.SIN,
-                Functions.COS
+                Functions.COS,
+                Functions._2COS,
+                Functions._2SIN,
+                Functions.SINCOS
         ));
 
         functionCB.setValue(Functions.SIN);
@@ -122,6 +125,14 @@ public class MainController {
         );
 
         lineChart.getData().add(series);
+    }
+
+    public void clearReal(ActionEvent actionEvent) {
+        trafficChartLC.getData().clear();
+    }
+
+    public void clearModulated(ActionEvent actionEvent) {
+        chartLC.getData().clear();
     }
 }
 

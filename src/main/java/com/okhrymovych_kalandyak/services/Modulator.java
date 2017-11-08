@@ -39,6 +39,18 @@ public class Modulator implements IModulator {
                     trafficPoints.add(new TrafficPoint(randomService.percent(
                             Math.cos(current), dispersion) + 1.0 + dispersion / 100, current));
                     break;
+                case _2SIN:
+                    trafficPoints.add(new TrafficPoint(randomService.percent(
+                            2 * Math.sin(current), dispersion) + 2.0 + dispersion / 100, current));
+                    break;
+                case _2COS:
+                    trafficPoints.add(new TrafficPoint(randomService.percent(
+                            2 * Math.cos(current), dispersion) + 2.0 + dispersion / 100, current));
+                    break;
+                case SINCOS:
+                    trafficPoints.add(new TrafficPoint(randomService.percent(
+                            Math.sin(current) * Math.cos(current), dispersion) + 0.5 + dispersion / 100, current));
+                    break;
             }
 
             current += dx;
