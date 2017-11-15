@@ -89,9 +89,9 @@
                      <children>
                         <TextArea layoutX="21.0" layoutY="14.0" prefHeight="200.0" prefWidth="403.0" text="NULP 2017 Master degree work&#10;&#10;Authors: &#10;Okhrymovych Andrii &#10;Kalandiak Igor&#10;&#10;Version: 1.0&#10;&#10;&#10;" />
                      </children></AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </AnchorPane>

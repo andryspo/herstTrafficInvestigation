@@ -102,7 +102,7 @@ public class MainController {
 
         double a = Double.parseDouble(aParamTF.getText());
 
-        addTrafficPointsToChart(trafficChartLC, trafficPoints);
+        addTrafficPointsToChart(trafficChartLC, trafficPoints, true);
 
         if (trafficPoints != null && !trafficPoints.isEmpty()) {
             resultTF.setText(String.valueOf(herstCalculator.calc(trafficPoints, a)));
@@ -119,12 +119,35 @@ public class MainController {
         double aParam = Double.parseDouble(aModulateParamTF.getText());
 
         List<TrafficPoint> modulated = modulator.modulate(min, max, n, functions, dispersion);
-        addTrafficPointsToChart(chartLC, modulated);
+        addTrafficPointsToChart(chartLC, modulated, false);
         modulatedHerstParamTF.setText(String.valueOf(herstCalculator.calc(modulated, aParam)));
     }
 
-    private void addTrafficPointsToChart(LineChart<Double, Double> lineChart, List<TrafficPoint> points) {
+    private void addTrafficPointsToChart(LineChart<Double, Double> lineChart, List<TrafficPoint> points, boolean isRaw) {
+
         XYChart.Series<Double, Double> series = new XYChart.Series<>();
+
+        if(isRaw) {
+            series.setName("Raw traffic data");
+        } else {
+            switch (functionCB.getValue()) {
+                case SIN:
+                    series.setName("func sin(x)");
+                    break;
+                case COS:
+                    series.setName("func cos(x)");
+                    break;
+                case _2SIN:
+                    series.setName("func 2*sin(x)");
+                    break;
+                case _2COS:
+                    series.setName("func 2*cos(x)");
+                    break;
+                case SINCOS:
+                    series.setName("func sin(x)*cos(x)");
+                    break;
+            }
+        }
 
         points.forEach(
                 e -> series.getData().add(new XYChart.Data<>(e.getTime(), e.getSpeed()))
