@@ -2,6 +2,7 @@ package com.okhrymovych_kalandyak.controllers;
 
 import com.okhrymovych_kalandyak.enums.Functions;
 import com.okhrymovych_kalandyak.model.TrafficPoint;
+import com.okhrymovych_kalandyak.services.FileChooserImpl;
 import com.okhrymovych_kalandyak.services.Modulator;
 import com.okhrymovych_kalandyak.services.interfaces.ICSVParser;
 import com.okhrymovych_kalandyak.services.interfaces.IHerstCalculator;
@@ -9,10 +10,12 @@ import com.okhrymovych_kalandyak.validator.AParameterValidator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +75,9 @@ public class MainController {
 
     @Autowired
     private Modulator modulator;
+
+    @Autowired
+    private FileChooserImpl fileChooser;
 
     @FXML
     public void initialize() {
@@ -133,6 +139,15 @@ public class MainController {
 
     public void clearModulated(ActionEvent actionEvent) {
         chartLC.getData().clear();
+    }
+
+    public void searchFile(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Window stage = source.getScene().getWindow();
+        String path = fileChooser.choose(stage);
+        if(path != null && !path.isEmpty()) {
+            fileTF.setText(path);
+        }
     }
 }
 
