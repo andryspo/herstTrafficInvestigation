@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,6 +34,7 @@ public class Main extends Application {
         stage.setScene(new Scene(rootNode));
         stage.setResizable(false);
         stage.setTitle("Herst parameter");
+        stage.getIcons().add(new Image("/ico/ico.png"));
         stage.show();
     }
 
