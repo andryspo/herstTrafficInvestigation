@@ -61,6 +61,11 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.0</version>
+        </dependency>
 
     </dependencies>
 

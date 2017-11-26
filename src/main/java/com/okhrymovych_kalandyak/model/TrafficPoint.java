@@ -26,4 +26,12 @@ public class TrafficPoint {
     public void setTime(double time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "TrafficPoint{" +
+                "speed=" + speed +
+                ", time=" + time +
+                '}';
+    }
 }

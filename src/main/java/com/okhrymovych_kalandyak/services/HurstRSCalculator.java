@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
-public class HerstCalculator implements IHerstCalculator {
+public class HurstRSCalculator implements IHerstCalculator {
 
-    private Logger logger = LoggerFactory.getLogger(HerstCalculator.class);
+    private Logger logger = LoggerFactory.getLogger(HurstRSCalculator.class);
 
     //formula : H = log(R/S)/log(a*N)
     public double calc(List<TrafficPoint> trafficPoints, double a) {
@@ -43,13 +43,6 @@ public class HerstCalculator implements IHerstCalculator {
                 .mapToDouble(e -> (e - average) * (e - average))
                 .average()
                 .getAsDouble());
-    }
-
-    private double calcSeredneArufmetuchne(List<Double> trafficPoints) {
-        return trafficPoints.stream()
-                .mapToDouble(Double::doubleValue)
-                .average()
-                .getAsDouble();
     }
 
     private double calcR(List<Double> trafficPoints, double xsr) {

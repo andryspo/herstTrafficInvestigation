@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="406.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.okhrymovych_kalandyak.controllers.ShowGraphController">
+   <children>
+      <LineChart fx:id="graphicsLC" layoutY="22.0" prefHeight="362.0" prefWidth="502.0">
+        <xAxis>
+          <NumberAxis prefHeight="0.0" prefWidth="445.0" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label fx:id="slopLB" layoutX="14.0" layoutY="6.0" text="Slop:" />
+   </children>
+</AnchorPane>

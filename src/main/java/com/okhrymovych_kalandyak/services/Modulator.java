@@ -26,7 +26,7 @@ public class Modulator implements IModulator {
 
         double dx = (maxValue - minValue) / n;
         logger.info("dx {}", dx);
-        double current = 0;
+        double current = minValue;
 
         for (int i = 0; i < n; i++) {
 
