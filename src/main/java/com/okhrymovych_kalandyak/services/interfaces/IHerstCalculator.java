@@ -8,4 +8,11 @@ public interface IHerstCalculator {
 
     double calc(List<TrafficPoint> trafficPoints, double a);
 
+    default double calcSeredneArufmetuchne(List<Double> trafficPoints) {
+        return trafficPoints.stream()
+                .mapToDouble(Double::doubleValue)
+                .average()
+                .getAsDouble();
+    }
+
 }
